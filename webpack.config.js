@@ -72,7 +72,7 @@ const config = {
   resolveLoader: {
     modules: [setPath('node_modules')]
   },
-  mode: 'development',
+  mode: buildingForLocal() ? 'development' : 'production',
   devServer: {
     historyApiFallback: true,
     noInfo: false
