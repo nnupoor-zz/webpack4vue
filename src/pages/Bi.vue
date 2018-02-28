@@ -1,7 +1,7 @@
 <template>
   <div class="welcome-class">
    {{byeText}}
-   <router-link to="default">Back!</router-link>
+   <router-link to="/">Back!</router-link>
   </div>
 </template>
 
