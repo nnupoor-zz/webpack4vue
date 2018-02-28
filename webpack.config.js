@@ -93,10 +93,10 @@ const config = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          // postcss: [require('postcss-cssnext')()]
+          // postcss: [require('postcss-cssnext')()],
           // options: {
-            //   extractCSS: true
-            // }
+          //     extractCSS: true
+          // },
           loaders: {
             js: 'babel-loader'
           }
@@ -110,20 +110,20 @@ const config = {
           options: { presets: ['es2015'] }
         }]
       },
-      // {
-      //   test: /\.css$/,
-      //   use: extractCSS.extract({
-      //     fallback: "style-loader",
-      //     use: ["css-loader", "autoprefixer-loader"]
-      //   })
-      // },
+      {
+        test: /\.css$/,
+        use: extractCSS.extract({
+          fallback: "style-loader",
+          use: ["css-loader", "autoprefixer-loader"]
+        })
+      },
       {
         test: /\.scss$/,
-        use: //!buildingForLocal() ?
-            // extractCSS.extract({
-            //   fallback: "style-loader",
-            //   use: ['css-loader', 'autoprefixer-loader', 'sass-loader']
-            // }) :
+        use: !buildingForLocal() ?
+             extractCSS.extract({
+               fallback: "style-loader",
+               use: ['css-loader', 'autoprefixer-loader', 'sass-loader']
+            }) :
             [{
                 loader: "style-loader" // creates style nodes from JS strings
               }, {
