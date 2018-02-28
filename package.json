@@ -11,7 +11,9 @@
     "production-build": "Your script for build for doing extra things",
     "staging-build": "Your script for build for doing extra things",
     "staging-deploy": "Your script for build for deploying this project",
-    "production-deploy": "Your script for deploying this project"
+    "production-deploy": "Your script for deploying this project",
+    "test": "node_modules/.bin/karma start",
+    "test-grep": "node_modules/.bin/karma start --grep"
   },
   "repository": {
     "type": "git",
