@@ -1,0 +1,18 @@
+<html>
+    <head>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+      <meta http-equiv="expires" content="0">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    </head>
+    <body>
+      <div id="app"><hello-webpack></hello-webpack></div>
+      <!-- These are vendors you want to add from CDN -->
+      <script src="https://apps-static.flock.co/jquery/2.1.4/jquery.min.js"></script>
+     <% if (!htmlWebpackPlugin.options.isLocalBuild) { %>
+      <!-- These are vendors in production app that are on CDN. You can remove it if not needed -->
+      <script src="https://apps-static.flock.co/jslibs/vue/vue.min.js"></script>
+      <script src="https://apps-static.flock.co/jslibs/vue/vue-resource.min.js"></script>
+      <script src="https://apps-static.flock.co/jslibs/vue/vue-router-2.8.1.min.js"></script>
+     <% }  %>
+    </body>
+  </html
