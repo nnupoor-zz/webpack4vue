@@ -10,10 +10,6 @@ const setPath = function(folderName) {
   return path.join(__dirname, folderName);
 }
 
-const isProd = function() {
-  return (process.env.NODE_ENV === 'production') ? true : false;
-}
-
 const buildingForLocal = () => {
   return (NODE_ENV === 'development');
 };
@@ -21,9 +17,9 @@ const buildingForLocal = () => {
 const setPublicPath = () => {
   let env = NODE_ENV;
   if (env === 'production') {
-    return 'https://apps-static.flock.co/history/production/';
+    return 'https://your-directory/production/';
   } else if (env === 'staging') {
-    return 'https://apps-static.flock.co/history/staging/';
+    return 'https://your-directory/staging/';
   } else {
     return '/';
   }
