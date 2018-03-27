@@ -9,8 +9,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import routes from './utils/routes';
-import HelloWebpack from './pages/HelloWebpack.vue';
+import routes from './utils/routes'
+import HelloWebpack from './pages/HelloWebpack.vue'
+import styles from './css/styles.scss';
 
 // Yay! Routes FTW.
 Vue.use(VueRouter)

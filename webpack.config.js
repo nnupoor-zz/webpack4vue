@@ -1,9 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const NODE_ENV = process.env.NODE_ENV;
 
 const setPath = function(folderName) {
@@ -25,20 +24,19 @@ const setPublicPath = () => {
   }
 };
 
-// Not extracting CSS because its not compatible yet.
-// https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/701
-// Should be working soon.
-const extractCSS = new ExtractTextPlugin({
-  filename: "css/styles.[hash].css",//"[name].[contenthash].css",
-  disable: process.env.NODE_ENV === "development"
-});
-
-
 const extractHTML = new HtmlWebpackPlugin({
   title: 'History Search',
   filename: 'index.html',
   inject: true,
   template: setPath('/src/tpl/tpl.ejs'),
+  minify: {
+    removeAttributeQuotes: true,
+    collapseWhitespace: true,
+    html5: true,
+    minifyCSS: true,
+    removeComments: true,
+    removeEmptyAttributes: true
+  },
   environment: process.env.NODE_ENV,
   isLocalBuild: buildingForLocal(),
   imgPath: (!buildingForLocal()) ? 'assets' : 'src/assets'
@@ -49,6 +47,7 @@ const config = {
   /**
    * You can use these too for bigger projects. For now it is 0 conf mode for me!
    */
+  // "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
   // entry: {
   //   build: path.join(setPath('src'), 'main.js'),
   //   vendor: path.join('setPath('src'), 'vendor.js')
@@ -75,7 +74,12 @@ const config = {
   },
   plugins: [
     extractHTML,
-    // extractCSS,
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "css/styles.[hash].css",
+      chunkFilename: "[id].css"
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         isStaging: (NODE_ENV === 'development' || NODE_ENV === 'staging'),
@@ -108,18 +112,18 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: extractCSS.extract({
-          fallback: "style-loader",
-          use: ["css-loader", "autoprefixer-loader"]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
       },
       {
         test: /\.scss$/,
         use: !buildingForLocal() ?
-             extractCSS.extract({
-               fallback: "style-loader",
-               use: ['css-loader', 'autoprefixer-loader', 'sass-loader']
-            }) :
+            [
+              MiniCssExtractPlugin.loader,
+              "css-loader", 'sass-loader'
+            ] :
             [{
                 loader: "style-loader" // creates style nodes from JS strings
               }, {

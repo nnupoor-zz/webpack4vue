@@ -1,0 +1,10 @@
+## App.vue => initialise app.
+  1. InputEl.vue => Paste Text
+  2. ContextChooser.vue => Choose Context
+    2.1 ListContexts.vue => List Contexts
+    2.2 ContextSelectorRadio.vue => Choose Context
+  3. OutputFormatChooser.vue => Choose output format
+    3.1 TextAudioChooser.vue => Choose between text and audio.
+    3.2 OutputConstraint.vue => Choose output constraints.
+        3.2.1 OutputTextLines.vue => Output text format lines.
+        3.2.2 OutputAudioMinutes.vue => Output T-T-S audio.
