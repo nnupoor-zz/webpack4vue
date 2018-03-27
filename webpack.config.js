@@ -47,7 +47,6 @@ const config = {
   /**
    * You can use these too for bigger projects. For now it is 0 conf mode for me!
    */
-  // "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
   // entry: {
   //   build: path.join(setPath('src'), 'main.js'),
   //   vendor: path.join('setPath('src'), 'vendor.js')
