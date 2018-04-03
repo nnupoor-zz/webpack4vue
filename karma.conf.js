@@ -38,7 +38,7 @@ module.exports = function(config) {
 
         //webpack config
         //taken from: https://cafedev.org/article/2016/12/testing-with-wepack-2-inject-loader-karma-mocha-chai-and-sinon/
-        webpack: require("./webpack.config.js"),
+        webpack: webpackConfig,
         webpackMiddleware: {
             stats: "errors-only"
         },
